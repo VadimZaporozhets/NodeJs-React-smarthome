@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { removeDevice, switchOn, switchOff } from '../api';
+import { removeDevice, removeDeviceLogs, switchOn, switchOff } from '../api';
 import { devicePropType } from '../constants';
 
 export default class DeviceItem extends PureComponent {
@@ -8,6 +8,9 @@ export default class DeviceItem extends PureComponent {
         const {device, onUpdate} = this.props;
 
         await removeDevice(device.id);
+
+        await removeDeviceLogs(device.id);
+
         onUpdate();
     };
 
